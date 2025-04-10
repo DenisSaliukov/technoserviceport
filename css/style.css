@@ -6447,14 +6447,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .content-case__pagination {
     display: none
   }
-  .consultation__bottom-buttons {
-    flex-direction: column;
-    align-items: flex-start
-  }
   .consultation__file {
     display: flex;
-    gap: 1.25rem;
-    width: 100%;
     align-items: flex-end
   }
   .price__body {
