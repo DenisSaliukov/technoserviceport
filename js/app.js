@@ -3675,7 +3675,7 @@
             classes
         };
         const extendedDefaults = {};
-        class swiper_core_Swiper {
+        class Swiper {
             constructor() {
                 let el;
                 let params;
@@ -3691,7 +3691,7 @@
                         const newParams = utils_extend({}, params, {
                             el: containerEl
                         });
-                        swipers.push(new swiper_core_Swiper(newParams));
+                        swipers.push(new Swiper(newParams));
                     }));
                     return swipers;
                 }
@@ -4063,25 +4063,25 @@
                 return defaults;
             }
             static installModule(mod) {
-                if (!swiper_core_Swiper.prototype.__modules__) swiper_core_Swiper.prototype.__modules__ = [];
-                const modules = swiper_core_Swiper.prototype.__modules__;
+                if (!Swiper.prototype.__modules__) Swiper.prototype.__modules__ = [];
+                const modules = Swiper.prototype.__modules__;
                 if (typeof mod === "function" && modules.indexOf(mod) < 0) modules.push(mod);
             }
             static use(module) {
                 if (Array.isArray(module)) {
-                    module.forEach((m => swiper_core_Swiper.installModule(m)));
-                    return swiper_core_Swiper;
+                    module.forEach((m => Swiper.installModule(m)));
+                    return Swiper;
                 }
-                swiper_core_Swiper.installModule(module);
-                return swiper_core_Swiper;
+                Swiper.installModule(module);
+                return Swiper;
             }
         }
         Object.keys(prototypes).forEach((prototypeGroup => {
             Object.keys(prototypes[prototypeGroup]).forEach((protoMethod => {
-                swiper_core_Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
+                Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
             }));
         }));
-        swiper_core_Swiper.use([ Resize, Observer ]);
+        Swiper.use([ Resize, Observer ]);
         function Mousewheel(_ref) {
             let {swiper, extendParams, on, emit} = _ref;
             const window = ssr_window_esm_getWindow();
@@ -5325,12 +5325,13 @@
             });
         }
         function initSliders() {
-            if (document.querySelector(".cooperation__slider")) new swiper_core_Swiper(".cooperation__slider", {
+            if (document.querySelector(".cooperation__slider")) new Swiper(".cooperation__slider", {
                 modules: [ Autoplay ],
                 observer: true,
                 observeParents: true,
                 slidesPerView: 6,
                 spaceBetween: 0,
+                allowTouchMove: false,
                 speed: 5e3,
                 loop: true,
                 loopedSlidesLimit: null,
@@ -5362,7 +5363,7 @@
                 },
                 on: {}
             });
-            if (document.querySelector("#services-slider-ru")) new swiper_core_Swiper("#services-slider-ru", {
+            if (document.querySelector("#services-slider-ru")) new Swiper("#services-slider-ru", {
                 modules: [ Scrollbar, Mousewheel ],
                 observer: true,
                 observeParents: true,
@@ -5408,7 +5409,7 @@
                 },
                 on: {}
             });
-            if (document.querySelector("#services-slider-en")) new swiper_core_Swiper("#services-slider-en", {
+            if (document.querySelector("#services-slider-en")) new Swiper("#services-slider-en", {
                 modules: [ Scrollbar, Mousewheel ],
                 observer: true,
                 observeParents: true,
@@ -5456,7 +5457,7 @@
             });
             if (document.querySelector("#content-case-slider")) {
                 let menu = [ "Talgo", "Bagtyyar", "Новая энергия", "Силовой остров", 'Ж/Д "Окно"' ];
-                new swiper_core_Swiper("#content-case-slider", {
+                new Swiper("#content-case-slider", {
                     modules: [ Navigation, Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5491,7 +5492,7 @@
             }
             if (document.querySelector("#content-case-slider-en")) {
                 let menu = [ "Talgo", "Bagtyyar", "New Energy", "Power Island", "PPW" ];
-                new swiper_core_Swiper("#content-case-slider-en", {
+                new Swiper("#content-case-slider-en", {
                     modules: [ Navigation, Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5526,7 +5527,7 @@
             }
             if (document.querySelector("#price-slider-ru")) {
                 let menu = [ "1", "2", "3", "4", "5" ];
-                new swiper_core_Swiper("#price-slider-ru", {
+                new Swiper("#price-slider-ru", {
                     modules: [ Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5558,7 +5559,7 @@
             }
             if (document.querySelector("#price-slider-en")) {
                 let menu = [ "1", "2", "3", "4", "5" ];
-                new swiper_core_Swiper("#price-slider-en", {
+                new Swiper("#price-slider-en", {
                     modules: [ Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5589,7 +5590,7 @@
                 });
             }
             if (document.querySelector("#base-slider-ru")) {
-                new swiper_core_Swiper("#base-slider-ru", {
+                new Swiper("#base-slider-ru", {
                     modules: [ Navigation, Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5637,7 +5638,7 @@
                 });
             }
             if (document.querySelector("#base-slider-en")) {
-                new swiper_core_Swiper("#base-slider-en", {
+                new Swiper("#base-slider-en", {
                     modules: [ Navigation, Pagination ],
                     observer: true,
                     observeParents: true,
@@ -5685,7 +5686,7 @@
                 });
             }
             if (document.querySelector("#activity-bottom-ru")) {
-                new swiper_core_Swiper("#activity-bottom-ru", {
+                new Swiper("#activity-bottom-ru", {
                     modules: [ Scrollbar, Mousewheel ],
                     observer: true,
                     observeParents: true,
@@ -5733,7 +5734,7 @@
                 });
             }
             if (document.querySelector("#activity-bottom-en")) {
-                new swiper_core_Swiper("#activity-bottom-en", {
+                new Swiper("#activity-bottom-en", {
                     modules: [ Scrollbar, Mousewheel ],
                     observer: true,
                     observeParents: true,
@@ -7692,34 +7693,40 @@ PERFORMANCE OF THIS SOFTWARE.
                 submenuEn.classList.remove("_active");
             }
         }));
-        const itemsCont = document.querySelector("#service-list-ru");
-        const imageBG = document.querySelectorAll("#services-img-ru");
-        if (itemsCont) {
-            const items = itemsCont.querySelectorAll("#services-cont-ru");
-            for (let i = 0; i < items.length; i++) {
-                items[i].addEventListener("mouseover", (function() {
-                    imageBG[i].classList.add("_active");
-                    items[i].classList.add("_active");
-                }));
-                items[i].addEventListener("mouseout", (function() {
-                    imageBG[i].classList.remove("_active");
-                    items[i].classList.remove("_active");
-                }));
+        if (window.matchMedia("(min-width: 767.98px)").matches) {
+            const itemslist = document.querySelector("#service-list-ru");
+            const imageBG = document.querySelectorAll("#services-img-ru");
+            if (itemslist) {
+                const items = itemslist.querySelectorAll("#services-cont-ru");
+                for (let i = 0; i < items.length; i++) {
+                    items[i].addEventListener("mouseover", (function() {
+                        imageBG[i].classList.add("_active");
+                        items[i].classList.add("_active");
+                        items[i].parentElement.classList.add("_active");
+                    }));
+                    items[i].addEventListener("mouseout", (function() {
+                        imageBG[i].classList.remove("_active");
+                        items[i].classList.remove("_active");
+                        items[i].parentElement.classList.remove("_active");
+                    }));
+                }
             }
-        }
-        const itemsContEn = document.querySelector("#service-list-en");
-        const imageBGEn = document.querySelectorAll("#services-img-en");
-        if (itemsContEn) {
-            const itemsEn = itemsContEn.querySelectorAll("#services-cont-en");
-            for (let i = 0; i < itemsEn.length; i++) {
-                itemsEn[i].addEventListener("mouseover", (function() {
-                    imageBGEn[i].classList.add("_active");
-                    itemsEn[i].classList.add("_active");
-                }));
-                itemsEn[i].addEventListener("mouseout", (function() {
-                    imageBGEn[i].classList.remove("_active");
-                    itemsEn[i].classList.remove("_active");
-                }));
+            const itemslistEn = document.querySelector("#service-list-en");
+            const imageBGEn = document.querySelectorAll("#services-img-en");
+            if (itemslistEn) {
+                const itemsEn = itemslistEn.querySelectorAll("#services-cont-en");
+                for (let i = 0; i < itemsEn.length; i++) {
+                    itemsEn[i].addEventListener("mouseover", (function() {
+                        imageBGEn[i].classList.add("_active");
+                        itemsEn[i].classList.add("_active");
+                        itemsEn[i].parentElement.classList.add("_active");
+                    }));
+                    itemsEn[i].addEventListener("mouseout", (function() {
+                        imageBGEn[i].classList.remove("_active");
+                        itemsEn[i].classList.remove("_active");
+                        itemsEn[i].parentElement.classList.remove("_active");
+                    }));
+                }
             }
         }
         function inputReady() {

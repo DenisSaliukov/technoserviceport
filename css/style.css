@@ -964,9 +964,6 @@ body::after {
   width: 100%;
   padding-top: 4.375rem
 }
-._en .advantages {
-  padding-top: 8.75rem
-}
 .advantages__item {
   font-size: 1.25rem;
   line-height: 1.5;
@@ -1141,15 +1138,13 @@ body::after {
   border-bottom: 1px solid #364866
 }
 .content-services__item._active {
-  background-color: #121a26
+  background-color: rgba(18,26,38,.8)
 }
 .content-services__item._active .content-services__container {
-  border-top: 1px solid transparent
+  border-top: 1px solid transparent;
+  border-bottom: 0 solid transparent
 }
-.content-services__item._active:last-child .content-services__container {
-  border-bottom: 1px solid transparent
-}
-.content-services__item._active+.content-services__item .content-services__container {
+.content-services__item._active~.content-services__item .content-services__container {
   border-top: 1px solid transparent
 }
 .content-services__container {
