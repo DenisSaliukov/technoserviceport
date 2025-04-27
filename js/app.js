@@ -7768,7 +7768,7 @@ PERFORMANCE OF THIS SOFTWARE.
             }, {
                 searchControlProvider: "yandex#search"
             });
-            var myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            var myPlacemark = new ymaps.Placemark(myMap.getCenter([ 59.90626, 30.262643 ]), {
                 hintContent: "ТехноСервис Порт"
             }, {
                 iconLayout: "default#image",
